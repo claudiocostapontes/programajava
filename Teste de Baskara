@@ -1,0 +1,46 @@
+# programajavapacote  baskara ;
+
+importar estático  org.junit.Assert.assertEquals ;
+importar estático  org.junit.Assert.assertTrue ;
+
+import  org.junit.Before ;
+importar  org.junit.Test ;
+
+importar  baskara.ResolvedorBaskara.BaskaraException ;
+import  baskara.ResolvedorBaskara.ResultadoBaskara ;
+
+
+public  class  ResolvedorBaskaraTest {
+
+	resolvedor privado de  Baskara ;
+	
+	@Antes de
+	público  nulo  antes (){
+		resolvedor =  new  ResolvedorBaskara ();
+	}
+
+	@Teste
+	public  void  deveCalcularFormulaComDoisResultados () {
+		ResultadoBaskara resultado = resolvedor . resolve( 1 , - 2 , - 3 );
+		
+		assertEquals( 3,0 , resultado . getX1(), 0,0001 );
+		assertEquals( - 1,0 , resultado . getX2(), 0,0001 );
+	}
+
+	
+	@Teste
+	public  void  deveCalcularFormulaComApenasUmResultado () {
+		ResultadoBaskara resultado = resolvedor . resolver( 1 , 8 , 16 );
+		
+		assertTrue(resultado . getX1() == resultado . getX2());
+
+		assertEquals( - 4,0 , resultado . getX1(), 0,0001 );
+		assertEquals( - 4,0 , resultado . getX2(), 0,0001 );
+	}
+
+	@Test ( esperado = BaskaraException . class)
+	public  void  deveLancarExcecaoComFormulaSemResultado () {
+		solucionador . resolver( 10 , 6 , 10 );
+	}
+
+}
